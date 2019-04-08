@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>{{title | uppercase}}</h1>
+  <h1>{{ title | uppercase }}</h1>
 
   <input placeholder="Enter ISBN" [formControl]="isbn"><br />
 
@@ -10,16 +10,16 @@
     <p class="close" (click)="close()">X</p>
     <img [src]="book.CoverThumb" >
     <p><span class="label">Title: </span>{{ book.Title }}</p>
-    <p><span class="label">Description: </span>{{trimText(book.Description)}}</p>
+    <p><span class="label">Description: </span>{{ trimText(book.Description) }}</p>
     <ul>
     <span class="label">Author(s): </span>
-      <li *ngFor="let author of book.Authors">{{author.Name}}</li>
+      <li *ngFor="let author of book.Authors">{{ author.Name }}</li>
     </ul>
   </div>
 
   <div class="error" *ngIf="error !== undefined">
     <div class="hr"></div>
     <p class="close" (click)="close()">X</p>
-    {{ error.error.error }}
+    Error: {{ error.error.error }}
   </div>
 </div>
