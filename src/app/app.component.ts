@@ -11,12 +11,12 @@ export class AppComponent {
   constructor(private apiService: ApiService) {}
 
   title = 'bookfinda';
-  book: Object;
+  book: Object | undefined;
   error: any;
   isbn = new FormControl('');
 
   getBook() {
-    if (this.isbn.value === '') {
+    if (!this.isbn.value) {
       return alert('Oops.. No ISBN number entered')
     }
     this.book = undefined;
@@ -35,12 +35,10 @@ export class AppComponent {
   }
 
   trimText(str: { split: (arg0: string) => Array<string>; }) {
-    let strArr = str.split(" ");
-    if(strArr.length > 10){
-     strArr = strArr.slice(0, 10);
-     return strArr.join(" ") + "…";
-    }
-    return str;
+    const strArr = str.split(' ');
+	  return strArr.length > 10 
+	  ? `${strArr.slice(0, 10).join(' ')}…`
+	  : str;
   }
 
   close() {
