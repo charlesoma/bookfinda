@@ -1,0 +1,90 @@
+.container {
+    width: 800px;
+    background-color: #ffffff;
+    color: #000000;
+    text-align: center;
+    border: 3px solid #4CAF50;
+    border-radius: 5px;
+    padding: 0px 20px;
+}
+input {
+    height: 30px;
+    width: 300px;
+    border-radius: 4px;
+    padding-left: 5px;
+    border: ipx solid #000000;
+}
+
+button {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 20px 0 40px 0;
+}
+
+button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.book {
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+}
+
+.hr {
+    width: inherit;
+    border-bottom: 1px solid #a8a0a0;
+    margin-bottom: 40px;
+}
+
+.close {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #000000;
+    font-weight: bolder;
+}
+
+.book .label {
+    font-weight: bolder;
+}
+
+.book ul {
+    display: inline;
+    list-style: none;
+    padding: 0px;
+}
+
+.book ul li {
+    display: inline;
+   
+}
+
+.book ul li::after {
+    content: ", ";
+}
+
+.book ul li:last-child::after {
+    content: "";
+}
+
+.error {
+    position: relative;
+    margin-bottom: 40px;
+    color: red;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: inherit;
+    }
+}

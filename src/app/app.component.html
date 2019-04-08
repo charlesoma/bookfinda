@@ -1,19 +1,25 @@
-<h1>{{title | uppercase}}</h1>
+<div class="container">
+  <h1>{{title | uppercase}}</h1>
 
-<input placeholder="Enter ISBN" (keyup)="onKey($event)">
+  <input placeholder="Enter ISBN" [formControl]="isbn"><br />
 
-<button (click)="getBook()">Find Book</button>
+  <button (click)="getBook()">Find Book</button>
 
-<div *ngIf="book !== undefined">
-  <p>Title: {{ book.Title }}</p>
-  <p>Cover Image: <img [src]="book.CoverThumb" ></p>
-  <p>Description: {{trimText(book.Description)}}</p>
-  <ul>
-    <p>Author(s):</p>
-    <li *ngFor="let author of book.Authors">{{author.Name}}</li>
-  </ul>
-</div>
+  <div class="book" *ngIf="book !== undefined">
+    <div class="hr"></div>
+    <p class="close" (click)="close()">X</p>
+    <img [src]="book.CoverThumb" >
+    <p><span class="label">Title: </span>{{ book.Title }}</p>
+    <p><span class="label">Description: </span>{{trimText(book.Description)}}</p>
+    <ul>
+    <span class="label">Author(s): </span>
+      <li *ngFor="let author of book.Authors">{{author.Name}}</li>
+    </ul>
+  </div>
 
-<div *ngIf="error !== undefined">
-  {{ error.error.error }}
+  <div class="error" *ngIf="error !== undefined">
+    <div class="hr"></div>
+    <p class="close" (click)="close()">X</p>
+    {{ error.error.error }}
+  </div>
 </div>

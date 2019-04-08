@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from './api.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,26 +8,26 @@ import { ApiService } from './api.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'bookfinda';
-  book: Object;
-  value: string;
-  error: any;
   constructor(private apiService: ApiService) {}
 
-  onKey(event: { target: { value: string; }; }) {
-    this.value = event.target.value;
-  }
+  title = 'bookfinda';
+  book: Object;
+  error: any;
+  isbn = new FormControl('');
 
   getBook() {
+    if (this.isbn.value === '') {
+      return alert('Oops.. No ISBN number entered')
+    }
     this.book = undefined;
     this.error = undefined;
-
-    if (localStorage.getItem(this.value)) {
-      this.book = JSON.parse(localStorage.getItem(this.value));
+    
+    if (localStorage.getItem(this.isbn.value)) {
+      this.book = JSON.parse(localStorage.getItem(this.isbn.value));
     } else {
-      this.apiService.getBook(this.value).subscribe((res)=> {
+      this.apiService.getBook(this.isbn.value).subscribe((res)=> {
         this.book = res;
-        localStorage.setItem(this.value, JSON.stringify(res));
+        localStorage.setItem(this.isbn.value, JSON.stringify(res));
       }, (err) => {
         this.error = err;
       });
@@ -40,5 +41,11 @@ export class AppComponent {
      return strArr.join(" ") + "…";
     }
     return str;
+  }
+
+  close() {
+    this.book = undefined;
+    this.error = undefined;
+    this.isbn.setValue('');
   }
 }
